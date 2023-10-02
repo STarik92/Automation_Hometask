@@ -19,13 +19,13 @@ describe ('Firts part of tests', () => {
         cy.get('location-selector__button-language').as('languageSwitcher');
         cy.get('@languageSwitcher').invoke('location-selector__button-language-prefix').as('initialLanguage');
         cy.get('@languageSwitcher').click();
-        cy.get('uk').click();
+        cy.get('aria/Україна (Українська)').click();
         cy.get('@languageSwitcher').invoke('location-selector__button-language-prefix').as('updatedLanguage');
         cy.get('@updatedLanguage').should('eq', 'UA'); 
       });
       it('Should include specific items in the policies list', () => {
         cy.visit('https://www.epam.com/'); 
-        cy.get('policies').as('policiesList');
+        cy.get('[class=policies]').as('policiesList');
         const expectedItems = [
           'INVESTORS',
           'COOKIE POLICY',
@@ -56,9 +56,9 @@ describe ('Firts part of tests', () => {
       });
       it('Should open the search field and show search results for "AI"', () => {
         cy.visit('https://www.epam.com/');
-        cy.get('header-search__button header__icon').click();
-        cy.get('search-results__input-holder').type('AI').type('{enter}');
-        cy.get('search-ui-23', { timeout: 10000 }).should('be.visible');
+        cy.get('span.search-icon').click();
+        cy.get('#new_form_search').type('AI').type('{enter}');
+        cy.get('#search-ui-23', { timeout: 10000 }).should('be.visible');
       });
       it('Should check validation for required fields', () => {
         cy.visit('https://www.epam.com/about/who-we-are/contact'); 
