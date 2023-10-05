@@ -11,7 +11,8 @@
   "license": "ISC",
   "devDependencies": {
     "cy-verify-downloads": "^0.2.1",
-    "cypress": "^13.3.0"
+    "cypress": "^13.3.0",
+    "cypress-plugin-tab": "^1.0.5"
   },
   "dependencies": {
     "axios": "^1.5.1",

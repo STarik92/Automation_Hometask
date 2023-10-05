@@ -25,3 +25,4 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 require ('cypress-downloadfile/lib/downloadFileCommand')
 require ('cy-verify-downloads').addCustomCommand()
+require('cypress-plugin-tab')
