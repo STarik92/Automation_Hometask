@@ -1,10 +1,12 @@
 describe('User Registration Test', () => {
     it('Should allow user registration', () => {
+      const randomEmail = `testuser${Math.floor(Math.random() * 100000)}@gmail.com`;
+
       cy.visit('https://demowebshop.tricentis.com/');
       cy.get('.ico-register').click();  
       cy.get('#FirstName').type('Taras');
       cy.get('#LastName').type('Sirak');
-      cy.get('#Email').type('sirk.ta1s@gmail.com');
+      cy.get('#Email').type(randomEmail);
       cy.get('#Password').type('password123');
       cy.get('#ConfirmPassword').type('password123');
       cy.get('[name="register-button"]').click();
@@ -31,39 +33,22 @@ describe('User Registration Test', () => {
         });
       });
 
-    //   it('Should allow sorting by different options', () => {
-    //     cy.visit('https://demowebshop.tricentis.com/accessories');
-    //     const sortingOptions = ['Name: A to Z', 'Name: Z to A', 'Price: Low to High', 'Price: High to Low'];
-    //     sortingOptions.forEach((option) => {
-    //       cy.get('[id="products-orderby"]').select(option);
-    //       cy.wait(2000);
-    //       cy.get('.product-grid .product-item').each(($item, index, $list) => {
-    //         if (index < $list.length - 1) {
-    //           const currentItem = $item.find('.product-title').text();
-    //           const nextItem = $list.eq(index + 1).find('.product-title').text();
-    
-    //           switch (option) {
-    //             case 'Name: A to Z':
-    //               expect(currentItem).to.be.lessThan(nextItem);
-    //               break;
-    //             case 'Name: Z to A':
-    //               expect(currentItem).to.be.greaterThan(nextItem);
-    //               break;
-    //             case 'Price: Low to High':
-    //               const currentPrice = parseFloat(currentItem.replace('$', '').replace(',', ''));
-    //               const nextPrice = parseFloat(nextItem.replace('$', '').replace(',', ''));
-    //               expect(currentPrice).to.be.lessThan(nextPrice);
-    //               break;
-    //             case 'Price: High to Low':
-    //               const currentPriceHigh = parseFloat(currentItem.replace('$', '').replace(',', ''));
-    //               const nextPriceHigh = parseFloat(nextItem.replace('$', '').replace(',', ''));
-    //               expect(currentPriceHigh).to.be.greaterThan(nextPriceHigh);
-    //               break;
-    //           }
-    //         }
-    //       });
-    //     });
-    // });
+    it('should allow sorting items by different options', () => {
+      cy.visit('https://demowebshop.tricentis.com/apparel-shoes');
+      const sortingOptions = [
+        { label: 'Name: A to Z', expectedFirstItem: "50's Rockabilly Polka Dot Top JR Plus Size" },
+        { label: 'Name: Z to A', expectedFirstItem: 'Wool Hat' },
+        { label: 'Price: Low to High', expectedFirstItem: 'Blue Jeans' },
+        { label: 'Price: High to Low', expectedFirstItem: "Women's Running Shoe" },
+        { label: 'Created on', expectedFirstItem: 'Green and blue Sneaker' },
+        { label: 'Position', expectedFirstItem: "50's Rockabilly Polka Dot Top JR Plus Size" },
+      ];
+      sortingOptions.forEach((option) => {
+        cy.get('[id="products-orderby"]').select(option.label);
+        cy.wait(1000); 
+        cy.get('.page-body .product-title a').first().should('have.text', option.expectedFirstItem);
+      });
+    });
 
     it('Should allow changing the number of items on the page', () => {
         cy.visit('https://demowebshop.tricentis.com/accessories');
