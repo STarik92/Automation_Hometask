@@ -2,6 +2,7 @@ const { defineConfig } = require("cypress");
 const { downloadFile } = require('cypress-downloadfile/lib/addPlugin')
 const { verifyDownloadTasks } = require ('cy-verify-downloads')
 
+experimentalSessionAndOrigin :true
 
 module.exports = defineConfig({
   projectId: 'x19jy6',

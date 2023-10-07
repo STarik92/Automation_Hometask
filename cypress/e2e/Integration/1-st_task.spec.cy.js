@@ -3,6 +3,18 @@ describe ('Firts part of tests', () => {
   beforeEach (() => {
     cy.viewport (1920,1080)
   })
+
+  it('Should change the site language to UA', () => {
+    cy.visit('https://www.epam.com');
+    cy.get('[class="location-selector__button"]').click({force: true});
+    cy.get('a[href="https://careers.epam.ua"]').click({force: true, multiple: true});
+    cy.visit('https://careers.epam.ua');
+    cy.origin('https://careers.epam.ua', () => {
+    cy.get('body').contains('Пропустити навігацію');
+    });
+  });
+
+  
     it ('Should contain the same title', () => {
         cy.visit ('https://www.epam.com/')
         cy.title('[property="og:title"]').should('be.equal','EPAM | Software Engineering & Product Development Services')
@@ -16,11 +28,6 @@ describe ('Firts part of tests', () => {
 
     });
 
-    it('Should change the site language to UA', () => {
-      cy.visit('https://www.epam.com');
-      cy.get('[class="location-selector__button"]').click({force: true});
-      cy.get('a[href="https://careers.epam.ua"').click({force: true, multiple: true}); 
-    });
 
     it('should check the policies list', () => {
       cy.visit('https://www.epam.com/');
