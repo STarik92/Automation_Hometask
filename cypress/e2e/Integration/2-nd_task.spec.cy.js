@@ -104,12 +104,12 @@ describe('User Registration Test', () => {
         cy.get('#BillingNewAddress_FaxNumber').type('12345');
 
 
-        cy.get('[class="tab-section allow active"]').get('[onclick="Billing.save()"]').click();
-        cy.get('[class="tab-section allow active"]').get('[onclick="Shipping.save()"]').click();
-        cy.get('[class="tab-section allow active"]').get('[onclick="ShippingMethod.save()"]').click();
-        cy.get('[class="tab-section allow active"]').get('[onclick="PaymentMethod.save()"]').click( );
-        cy.get('[class="tab-section allow active"]').get('[onclick="PaymentInfo.save()"]').click( );
-        cy.get('[class="tab-section allow active"]').get('[onclick="ConfirmOrder.save()"]').click( );
+        cy.get('[onclick="Billing.save()"]').click();
+        cy.get('[onclick="Shipping.save()"]').click();
+        cy.get('[onclick="ShippingMethod.save()"]').click();
+        cy.get('[onclick="PaymentMethod.save()"]').click( );
+        cy.get('[onclick="PaymentInfo.save()"]').click( );
+        cy.get('[onclick="ConfirmOrder.save()"]').click( );
 
         cy.get('.title').should('contain', 'Your order has been successfully processed!');
       });
