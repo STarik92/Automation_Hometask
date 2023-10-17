@@ -1,6 +1,5 @@
 const axios = require('axios');
 
-// Define the base URL for the Pets Store API
 const baseUrl = 'https://petstore.swagger.io/v2';
 
 describe('User Creation API Tests', () => {
