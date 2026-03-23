@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+// Test added: EPAM Client Work verification
 
 test.describe('EPAM Client Work', () => {
   test('navigate to client work and verify text', async ({ page }) => {
